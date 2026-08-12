@@ -1,0 +1,188 @@
+/* ===== 主题变量 & 全局样式 ===== */
+:root {
+  /* 品牌色：活力珊瑚橙，清爽不刺眼 */
+  --brand: #ff6a3d;
+  --brand-deep: #f0522a;
+  --brand-soft: #fff1ec;
+
+  /* 背景与卡片：奶白底 + 纯白卡片，强调留白 */
+  --bg: #fffaf7;
+  --card: #ffffff;
+  --text-main: #2b2b2b;
+  --text-sub: #9aa0a6;
+  --divider: #f4ece6;
+
+  /* 覆盖 Vant 主题变量，全站统一 */
+  --van-primary-color: var(--brand);
+  --van-danger-color: var(--brand);
+  --van-text-color: var(--text-main);
+  --van-text-color-2: var(--text-sub);
+  --van-background: var(--bg);
+  --van-background-2: var(--card);
+  --van-border-color: var(--divider);
+  --van-button-radius: 999px;
+  --van-radius-md: 12px;
+  --van-radius-lg: 16px;
+  --van-cell-group-inset-radius: 16px;
+  --van-cell-vertical-padding: 14px;
+  --van-submit-bar-height: 60px;
+  --van-submit-bar-button-height: 42px;
+  --van-submit-bar-price-color: var(--brand);
+  --van-tabs-bottom-bar-color: var(--brand);
+  --van-tag-radius: 999px;
+  --van-stepper-button-icon-color: var(--brand);
+  --van-stepper-input-text-color: var(--text-main);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
+  background: #f5f2ef;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 手机壳：桌面预览时限定宽度，真机上占满全宽 */
+.app-shell {
+  max-width: 480px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--bg);
+  box-shadow: 0 0 24px rgba(240, 82, 42, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 桌面端预览时，把 Vant 的 fixed 元素约束在手机壳宽度内 */
+.van-nav-bar--fixed,
+.van-submit-bar,
+.van-popup--bottom,
+.van-tabs--sticky {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+/* ===== 通用卡片 ===== */
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(240, 82, 42, 0.06);
+}
+
+/* ===== 菜品缩略图（mock 阶段为 emoji 占位，接后端后换真实图片 URL）===== */
+.dish-thumb {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff4ee, #ffe1cf);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dish-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dish-thumb-emoji {
+  font-size: 42px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(240, 82, 42, 0.18));
+}
+
+.dish-thumb-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 3px;
+  backdrop-filter: blur(1px);
+}
+
+/* ===== 菜品通用文本 ===== */
+.dish-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.dish-desc {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dish-price {
+  color: var(--brand);
+  font-weight: 800;
+  font-size: 17px;
+}
+
+/* ===== 加购按钮（+ 圆钮）===== */
+.add-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand-deep));
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 10px rgba(240, 82, 42, 0.32);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.add-btn:active {
+  transform: scale(0.88);
+  box-shadow: 0 2px 6px rgba(240, 82, 42, 0.25);
+}
+
+/* ===== 底部结算栏（胶囊按钮 + 白底上浮）===== */
+.van-submit-bar__bar {
+  background: #fff;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -4px 20px rgba(240, 82, 42, 0.08);
+  padding: 0 16px;
+}
+
+.van-submit-bar__price {
+  font-size: 22px;
+}
+
+.van-submit-bar__button {
+  border-radius: 999px;
+  padding: 0 28px;
+  background: linear-gradient(120deg, var(--brand), var(--brand-deep));
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(240, 82, 42, 0.32);
+}
